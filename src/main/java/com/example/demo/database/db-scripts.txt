@@ -1,0 +1,9 @@
+CREATE DATABASE IF NOT EXISTS symmetrical
+
+CREATE TABLE tables (
+    idTable INT PRIMARY KEY AUTO_INCREMENT,
+    status INT,
+    sits INT,
+    outside BIT(0)
+);
+
