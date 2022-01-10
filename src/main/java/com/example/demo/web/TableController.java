@@ -18,7 +18,7 @@ public class TableController {
         this.service = service;
     }
 
-    @GetMapping("/tables")
+    @GetMapping("/tables/all")
     public ResponseEntity<List<TableModel>> getAllAvailable(){
         return ResponseEntity.ok(service.getAllAvailable());
     }

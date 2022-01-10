@@ -5,22 +5,14 @@ import lombok.Getter;
 import java.util.stream.Stream;
 
 public enum TableStatus {
-    TAKEN(1),
-    AVAILABLE(2),
-    DISABLE(0);
+    TAKEN(100),
+    AVAILABLE(200),
+    DISABLE(300);
 
     @Getter
-    private final int id;
+    private final int code;
 
-    TableStatus(int id) {
-        this.id = id;
+    TableStatus(int code) {
+        this.code = code;
     }
-
-    public static TableStatus of(int status) {
-        return Stream.of(TableStatus.values())
-                .filter(p -> p.getId() == status)
-                .findFirst()
-                .orElseThrow(IllegalArgumentException::new);
-    }
-
 }

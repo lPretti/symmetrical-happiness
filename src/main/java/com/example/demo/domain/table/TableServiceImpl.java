@@ -1,7 +1,10 @@
 package com.example.demo.domain.table;
 
+import org.springframework.stereotype.Service;
+
 import java.util.List;
 
+@Service
 public class TableServiceImpl implements TableService{
     private TableRepository repository;
 
