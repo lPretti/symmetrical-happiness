@@ -2,6 +2,7 @@ package com.example.demo.database.table;
 
 import com.example.demo.domain.table.TableModel;
 import com.example.demo.domain.table.TableRepository;
+
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -19,10 +20,16 @@ public class TableRepositoryImpl implements TableRepository {
 
     @Override
     public List<TableModel> getAllByTableStatus(int code) {
-        return repository.getAllByTableStatus(code)
+        return repository.getAllByStatusValue(code)
                 .stream()
                 .map(this::toModel)
                 .collect(toList());
+    }
+
+    @Override
+    public Optional<TableModel> getById(int id) {
+        final Optional<TableEntity> entity = repository.findById(id);
+        return (entity.isPresent()) ? Optional.of(toModel(entity.get())) : Optional.empty();
     }
 
     private TableModel toModel(TableEntity entity){
@@ -33,10 +40,11 @@ public class TableRepositoryImpl implements TableRepository {
     }
 
     private TableEntity toEntity(TableModel model){
-        return new TableEntity(model.getId(),
-                model.getStatus(),
-                model.getStatus().getCode(),
-                model.getSits(),
-                model.isOutside());
+        TableEntity entity = new TableEntity();
+            entity.setId(model.getId());
+            entity.setStatus(model.getStatus());
+            entity.setSits(model.getSits());
+            entity.setOutside(model.isOutside());
+        return entity;
     }
 }
