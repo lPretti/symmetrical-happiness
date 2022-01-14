@@ -12,6 +12,7 @@ import static java.util.stream.Collectors.toList;
 
 @Repository
 public class TableRepositoryImpl implements TableRepository {
+
     private TableJpaRepository repository;
 
     public TableRepositoryImpl(TableJpaRepository repository) {
@@ -30,6 +31,11 @@ public class TableRepositoryImpl implements TableRepository {
     public Optional<TableModel> getById(int id) {
         final Optional<TableEntity> entity = repository.findById(id);
         return (entity.isPresent()) ? Optional.of(toModel(entity.get())) : Optional.empty();
+    }
+
+    @Override
+    public TableModel create(TableModel model) {
+        return toModel(repository.save(toEntity(model)));
     }
 
     private TableModel toModel(TableEntity entity){
