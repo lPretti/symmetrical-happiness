@@ -15,7 +15,7 @@ public class TableServiceImpl implements TableService{
 
     @Override
     public List<TableModel> getAllAvailable() {
-        return repository.getAllByTableStatus(TableStatus.AVAILABLE.getCode());
+        return repository.getAllByTableStatusCode(TableStatus.AVAILABLE.getCode());
     }
 
     @Override

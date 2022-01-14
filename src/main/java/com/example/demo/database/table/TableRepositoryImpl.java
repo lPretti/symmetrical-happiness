@@ -20,7 +20,7 @@ public class TableRepositoryImpl implements TableRepository {
     }
 
     @Override
-    public List<TableModel> getAllByTableStatus(int code) {
+    public List<TableModel> getAllByTableStatusCode(int code) {
         return repository.getAllByStatusValue(code)
                 .stream()
                 .map(this::toModel)

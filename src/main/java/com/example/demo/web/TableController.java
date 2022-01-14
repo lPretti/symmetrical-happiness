@@ -36,7 +36,7 @@ public class TableController {
         );
     }
 
-    @GetMapping("/tables")
+    @GetMapping("/tables/{tableId}")
     public ResponseEntity<?> getTableById(@PathVariable("tableId")int tableId){
         return  ResponseEntity.ok(service.getById(tableId));
     }
