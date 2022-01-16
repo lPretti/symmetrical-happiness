@@ -23,13 +23,8 @@ public class TableEntity implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name = "status")
-    @Enumerated(EnumType.STRING)
-    private TableStatus status;
-
-
-    @Column(name = "status_value")
-    private int statusValue;
+    @Column(name = "tableStatus")
+    private String tableStatus;
 
     @Column(name = "sits")
     private int sits;

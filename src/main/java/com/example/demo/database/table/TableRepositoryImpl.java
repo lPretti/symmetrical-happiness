@@ -3,6 +3,7 @@ package com.example.demo.database.table;
 import com.example.demo.domain.table.TableModel;
 import com.example.demo.domain.table.TableRepository;
 
+import com.example.demo.domain.table.TableStatus;
 import org.springframework.stereotype.Repository;
 
 import java.time.LocalDateTime;
@@ -21,8 +22,8 @@ public class TableRepositoryImpl implements TableRepository {
     }
 
     @Override
-    public List<TableModel> getAllByTableStatusCode(int code) {
-        return repository.getAllByStatusValue(code)
+    public List<TableModel> getAllByTableStatus(String status) {
+        return repository.getAllByTableStatus(status)
                 .stream()
                 .map(this::toModel)
                 .collect(toList());
@@ -41,7 +42,7 @@ public class TableRepositoryImpl implements TableRepository {
 
     private TableModel toModel(TableEntity entity){
         return new TableModel(entity.getId(),
-                entity.getStatus(),
+                TableStatus.getStatus(entity.getTableStatus()),
                 entity.getSits(),
                 entity.isOutside(),
                 entity.getCreatedAt(),
@@ -51,7 +52,7 @@ public class TableRepositoryImpl implements TableRepository {
     private TableEntity toEntity(TableModel model){
         TableEntity entity = new TableEntity();
             entity.setId(model.getId());
-            entity.setStatus(model.getStatus());
+            entity.setTableStatus(model.getStatus().toString());
             entity.setSits(model.getSits());
             entity.setOutside(model.isOutside());
             entity.setCreatedAt(LocalDateTime.now());

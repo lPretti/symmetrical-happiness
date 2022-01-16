@@ -6,5 +6,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 public interface TableJpaRepository extends JpaRepository<TableEntity,Integer> {
-    List<TableEntity> getAllByStatusValue(Integer code);
+    List<TableEntity> getAllByTableStatus(String status);
 }
