@@ -12,7 +12,7 @@ import javax.swing.text.html.parser.Entity;
 @NoArgsConstructor
 public class TableModel {
     private int id;
-    private String status;
+    private TableStatus status;
     private int sits;
     private boolean isOutside;
 }

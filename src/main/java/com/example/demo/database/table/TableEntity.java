@@ -18,14 +18,11 @@ import java.io.Serializable;
 public class TableEntity implements Serializable {
     @Id
     @Column(name = "idTable")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name = "status")
-    @Enumerated(EnumType.STRING)
-    private TableStatus status;
-
-    @Basic
-    private int statusValue;
+    @Column(name = "tableStatus")
+    private String tableStatus;
 
     @Column(name = "sits")
     private int sits;

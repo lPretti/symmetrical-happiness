@@ -5,14 +5,26 @@ import lombok.Getter;
 import java.util.stream.Stream;
 
 public enum TableStatus {
-    TAKEN(100),
-    AVAILABLE(200),
-    DISABLE(300);
+    TAKEN,
+    AVAILABLE,
+    DISABLE;
 
-    @Getter
-    private final int code;
 
-    TableStatus(int code) {
-        this.code = code;
+    public static TableStatus getStatus(String status) {
+        TableStatus result;
+        switch (status) {
+            case "TAKEN" :
+                result =TableStatus.TAKEN;
+                break;
+            case "AVAILABLE" :
+                result =TableStatus.AVAILABLE;
+                break;
+            case "DISABLE" :
+                result =TableStatus.DISABLE;
+                break;
+            default:
+                throw new IllegalStateException("Unexpected value: " + status);
+        }
+        return result;
     }
 }

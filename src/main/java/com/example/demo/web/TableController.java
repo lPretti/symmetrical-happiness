@@ -36,12 +36,12 @@ public class TableController {
         );
     }
 
-    @GetMapping("/tables/{tableId}")
+    @GetMapping("tables/{tableId}")
     public ResponseEntity<?> getTableById(@PathVariable("tableId")int tableId){
         return  ResponseEntity.ok(service.getById(tableId));
     }
 
-    @PostMapping("/tables")
+    @PostMapping("admin/tables")
     public ResponseEntity<?> create(@RequestBody TablesDtoRequest tableDto){
         return  ResponseEntity.ok(service.create(toModel(tableDto)));
     }
