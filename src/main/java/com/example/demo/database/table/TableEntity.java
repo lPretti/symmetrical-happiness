@@ -8,6 +8,8 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.time.LocalDateTime;
+
 
 @Entity
 @Getter
@@ -30,4 +32,9 @@ public class TableEntity implements Serializable {
     @Column(name = "outside")
     private boolean isOutside;
 
+    @Column(name = "createdAt")
+    private LocalDateTime createdAt;
+
+    @Column(name = "updatedAt")
+    private LocalDateTime updatedAt;
 }

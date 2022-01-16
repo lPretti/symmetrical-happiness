@@ -6,6 +6,7 @@ import com.example.demo.domain.table.TableRepository;
 import com.example.demo.domain.table.TableStatus;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -43,7 +44,9 @@ public class TableRepositoryImpl implements TableRepository {
         return new TableModel(entity.getId(),
                 TableStatus.getStatus(entity.getTableStatus()),
                 entity.getSits(),
-                entity.isOutside());
+                entity.isOutside(),
+                entity.getCreatedAt(),
+                entity.getUpdatedAt());
     }
 
     private TableEntity toEntity(TableModel model){
@@ -52,6 +55,8 @@ public class TableRepositoryImpl implements TableRepository {
             entity.setTableStatus(model.getStatus().toString());
             entity.setSits(model.getSits());
             entity.setOutside(model.isOutside());
+            entity.setCreatedAt(LocalDateTime.now());
+            entity.setUpdatedAt(entity.getCreatedAt());
         return entity;
     }
 }
