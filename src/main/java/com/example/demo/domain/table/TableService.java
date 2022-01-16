@@ -5,4 +5,5 @@ import java.util.List;
 public interface TableService {
     List<TableModel> getAllAvailable();
     TableModel getById(int tableId);
+    TableModel create(TableModel model);
 }

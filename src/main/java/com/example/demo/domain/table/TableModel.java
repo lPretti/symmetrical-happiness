@@ -1,9 +1,8 @@
 package com.example.demo.domain.table;
 
-import com.example.demo.database.table.TableEntity;
 import lombok.*;
 
-import javax.swing.text.html.parser.Entity;
+import java.time.LocalDateTime;
 
 @Getter
 @Setter
@@ -12,7 +11,9 @@ import javax.swing.text.html.parser.Entity;
 @NoArgsConstructor
 public class TableModel {
     private int id;
-    private String status;
+    private TableStatus status;
     private int sits;
     private boolean isOutside;
+    private LocalDateTime updatedAt;
+    private LocalDateTime createdAt;
 }

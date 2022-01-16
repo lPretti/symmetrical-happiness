@@ -4,6 +4,9 @@ import java.util.List;
 import java.util.Optional;
 
 public interface TableRepository {
-    List<TableModel> getAllByTableStatus(int code);
+    List<TableModel> getAllByTableStatusCode(int code);
+
     Optional<TableModel> getById(int id);
+
+    TableModel create(TableModel model);
 }

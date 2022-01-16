@@ -5,6 +5,7 @@ import com.example.demo.domain.table.TableRepository;
 
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -12,6 +13,7 @@ import static java.util.stream.Collectors.toList;
 
 @Repository
 public class TableRepositoryImpl implements TableRepository {
+
     private TableJpaRepository repository;
 
     public TableRepositoryImpl(TableJpaRepository repository) {
@@ -19,7 +21,7 @@ public class TableRepositoryImpl implements TableRepository {
     }
 
     @Override
-    public List<TableModel> getAllByTableStatus(int code) {
+    public List<TableModel> getAllByTableStatusCode(int code) {
         return repository.getAllByStatusValue(code)
                 .stream()
                 .map(this::toModel)
@@ -32,11 +34,18 @@ public class TableRepositoryImpl implements TableRepository {
         return (entity.isPresent()) ? Optional.of(toModel(entity.get())) : Optional.empty();
     }
 
+    @Override
+    public TableModel create(TableModel model) {
+        return toModel(repository.save(toEntity(model)));
+    }
+
     private TableModel toModel(TableEntity entity){
         return new TableModel(entity.getId(),
                 entity.getStatus(),
                 entity.getSits(),
-                entity.isOutside());
+                entity.isOutside(),
+                entity.getCreatedAt(),
+                entity.getUpdatedAt());
     }
 
     private TableEntity toEntity(TableModel model){
@@ -45,6 +54,8 @@ public class TableRepositoryImpl implements TableRepository {
             entity.setStatus(model.getStatus());
             entity.setSits(model.getSits());
             entity.setOutside(model.isOutside());
+            entity.setCreatedAt(LocalDateTime.now());
+            entity.setUpdatedAt(entity.getCreatedAt());
         return entity;
     }
 }

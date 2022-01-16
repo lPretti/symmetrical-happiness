@@ -1,9 +1,12 @@
-CREATE DATABASE IF NOT EXISTS symmetrical
+CREATE DATABASE IF NOT EXISTS symmetrical;
 
-CREATE TABLE tables (
-    idTable INT PRIMARY KEY AUTO_INCREMENT,
-    status INT,
+CREATE TABLE IF NOT EXISTS tables (
+    idTable INT NOT NULL AUTO_INCREMENT,
+    status INT(11),
     sits INT,
-    outside BIT(0)
+    outside BIT(0),
+    created_at datetime NOT NULL,
+    update_at datetime DEFAULT NULL,
+    PRIMARY KEY (idTable)
 );
 
