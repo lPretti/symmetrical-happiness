@@ -1,6 +1,5 @@
 package com.example.demo.domain.customer;
 
-import com.example.demo.database.customer.CustomerRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +16,6 @@ public class CustomerServiceImpl  implements CustomerServices{
 
     @Override
     public CustomerModel getById(Long customerId) {
-        return repository.getById();
+        return repository.getById(customerId);
     }
 }
