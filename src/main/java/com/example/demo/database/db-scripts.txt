@@ -10,3 +10,12 @@ CREATE TABLE IF NOT EXISTS tables (
     PRIMARY KEY (idTable)
 );
 
+CREATE TABLE IF NOT EXISTS customers (
+    idcustomer INT NOT NULL AUTO_INCREMENT,
+    name VARCHAR(30),
+    mail VARCHAR(30),
+    phone VARCHAR(12),
+    created_at datetime NOT NULL,
+    update_at datetime DEFAULT NULL,
+    PRIMARY KEY (idcustomer)
+);
