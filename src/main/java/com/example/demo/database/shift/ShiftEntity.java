@@ -4,10 +4,10 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.sql.Time;
-import java.time.Clock;
 import java.time.LocalDateTime;
 import java.util.Date;
-import java.util.HashMap;
+import java.util.Map;
+
 
 @Data
 @Entity
@@ -25,11 +25,10 @@ public class ShiftEntity {
     private Time initialTime;
 
     @ElementCollection
-    @CollectionTable(name = "available_table_mapping",
-    joinColumns = {@JoinColumn(name = "order_id", referencedColumnName = "id")})
-    @MapKeyColumn(name = "item_name")
-    @Column(name = "price")
-    private HashMap<Integer, Integer> availableTables;
+    @CollectionTable(name = "available_table_mapping")
+    @MapKeyColumn(name = "table_id")
+    @Column(name = "table_quantity")
+    private Map<Integer, Integer> availableTables;
 
     @Column(name = "created_At")
     private LocalDateTime created_At;

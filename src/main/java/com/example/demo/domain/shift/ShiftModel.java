@@ -6,6 +6,7 @@ import java.sql.Time;
 import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Map;
 
 @Data
 public class ShiftModel {
@@ -17,7 +18,7 @@ public class ShiftModel {
     private Long id;
     private Date date;
     private Time initialTime;
-    private HashMap <Integer, Integer> availableTables;
+    private Map<Integer, Integer> availableTables;
     private LocalDateTime created_At;
     private LocalDateTime updated_At;
 
