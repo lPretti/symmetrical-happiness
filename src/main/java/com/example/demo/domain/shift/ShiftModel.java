@@ -1,6 +1,6 @@
 package com.example.demo.domain.shift;
 
-import lombok.Data;
+import lombok.*;
 
 import java.sql.Time;
 import java.time.LocalDateTime;
@@ -8,7 +8,10 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-@Data
+@Builder
+@AllArgsConstructor
+@Getter
+@Setter
 public class ShiftModel {
     protected static final  Integer TABLE_FOR_2 = 2;
     protected static final  Integer TABLE_FOR_4 = 4;

@@ -1,6 +1,7 @@
 package com.example.demo.database.shift;
 
-import lombok.Data;
+import lombok.*;
+import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
 import java.sql.Time;
@@ -8,8 +9,11 @@ import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.Map;
 
-
-@Data
+@DynamicUpdate
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
 @Entity
 @Table(name = "shift")
 public class ShiftEntity {
