@@ -1,20 +1,44 @@
 package com.example.demo.database.shift;
 
-import com.example.demo.database.customer.CustomerEntity;
-import com.example.demo.domain.customer.CustomerModel;
 import com.example.demo.domain.shift.ShiftModel;
 import com.example.demo.domain.shift.ShiftRepository;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Repository;
 
-import java.sql.Date;
+import java.time.LocalDateTime;
+import java.util.Date;
+import java.util.Optional;
 
+@AllArgsConstructor
 @Repository
 public class ShiftRepositoryImpl implements ShiftRepository {
+    private ShiftJpaRepository repository;
 
     @Override
-    public boolean getShiftByDate(Date date) {
-        return false;
+    public Optional<ShiftModel> getShiftByDate(Date date) {
+        final Optional<ShiftEntity> shiftByDate = repository.getShiftByDate(date);
+        return  shiftByDate.isPresent() ? Optional.of(toModel(shiftByDate.get())) : Optional.empty();
     }
+
+    @Override
+    public ShiftModel update(ShiftModel model) {
+        return toModel(repository.save(toEntity(model)));
+    }
+
+    @Override
+    public ShiftModel create(ShiftModel model) {
+        final LocalDateTime dateTime = LocalDateTime.now();
+
+        ShiftEntity entity = new ShiftEntity();
+        entity.setAvailableTables(model.getAvailableTables());
+        entity.setDate(model.getDate());
+        entity.setInitialTime(model.getInitialTime());
+        entity.setCreated_At(dateTime);
+        entity.setUpdated_At(dateTime);
+
+        return toModel(repository.save(entity));
+    }
+
 
     private ShiftModel toModel(ShiftEntity entity) {
         return new ShiftModel(entity.getId(),
@@ -24,6 +48,7 @@ public class ShiftRepositoryImpl implements ShiftRepository {
                 entity.getCreated_At(),
                 entity.getUpdated_At());
     }
+
     private ShiftEntity toEntity(ShiftModel model) {
         return new ShiftEntity(model.getId(),
                 model.getDate(),
