@@ -1,4 +1,4 @@
-package com.example.demo.web.dto;
+package com.example.demo.web.dtos;
 
 import com.example.demo.domain.table.TableModel;
 import lombok.AllArgsConstructor;
