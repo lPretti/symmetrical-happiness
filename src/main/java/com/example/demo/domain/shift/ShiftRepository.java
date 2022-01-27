@@ -1,7 +1,10 @@
 package com.example.demo.domain.shift;
 
-import java.sql.Date;
+import java.util.Date;
+import java.util.Optional;
 
 public interface ShiftRepository {
-    boolean getShiftByDate(Date date);
+    Optional<ShiftModel> getByDate(Date date);
+    ShiftModel update(ShiftModel model);
+    ShiftModel create(ShiftModel model);
 }
