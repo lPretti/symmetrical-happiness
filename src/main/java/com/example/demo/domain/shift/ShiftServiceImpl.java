@@ -14,17 +14,17 @@ import java.util.Optional;
 @AllArgsConstructor
 public class ShiftServiceImpl implements ShiftService {
 
-    private ShiftRepository repository;
+    private ShiftRepository shiftRepository;
 
     private ReservationServices reservationServices;
 
-    public boolean checkAvailableTables(int seatingNumber, Date date) {
+    public boolean checkAvailableTables(int tableKey, Date date) {
             boolean result = false;
 
-            final Optional<ShiftModel> shiftByDate = repository.getShiftByDate(date);
+            final Optional<ShiftModel> shiftByDate = shiftRepository.getByDate(date);
             if (shiftByDate.isPresent()) {
                 final Map<Integer, Integer> availableTables = shiftByDate.get().getAvailableTables();
-                final Integer tablesAvailable = availableTables.get(getTableKeyValue(seatingNumber));
+                final Integer tablesAvailable = availableTables.get(getTableKeyValue(tableKey));
 
                 if (tablesAvailable > 0) {
                     result = true;
@@ -41,8 +41,8 @@ public class ShiftServiceImpl implements ShiftService {
         int result = 0;
 
         if (checkAvailableTables(seatingNumber,date)) {
-            final ShiftModel shiftToUpdated = removeTableReserved( repository.getByDate(date).get(), seatingNumber);
-            final ShiftModel updated = repository.update(shiftToUpdated);
+            final ShiftModel shiftToUpdated = removeTableReserved( shiftRepository.getByDate(date).get(), seatingNumber);
+            final ShiftModel updated = shiftRepository.update(shiftToUpdated);
             result = Math.toIntExact(updated.getId());
         } else {
             throw new DomainException("Shift services fail : can't book a table ");
@@ -50,12 +50,14 @@ public class ShiftServiceImpl implements ShiftService {
         return result;
     }
 
+
     protected  ShiftModel removeTableReserved( ShiftModel model, int seatingNumber) {
         final Integer tables = model.getAvailableTables().get(getTableKeyValue(seatingNumber));
         model.getAvailableTables().replace(2, tables - 1);
         return model;
     }
 
+    // TODO : convertir las key en un enum y dentro de esa clase poner este método
     protected int getTableKeyValue(int customerQuantity) {
         int tableKey = 0;
 
@@ -71,4 +73,10 @@ public class ShiftServiceImpl implements ShiftService {
 
         return tableKey;
     }
+
+    @Override
+    public ShiftModel create(ShiftModel model) {
+        return shiftRepository.create(model);
+    }
+
 }

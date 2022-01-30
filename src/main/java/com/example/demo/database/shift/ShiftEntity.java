@@ -8,6 +8,7 @@ import java.sql.Time;
 import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.Map;
+import java.util.Timer;
 
 @DynamicUpdate
 @AllArgsConstructor
@@ -26,7 +27,7 @@ public class ShiftEntity {
     private Date date;
 
     @Column(name = "initialTime")
-    private Time initialTime;
+    private int initialTime;
 
     @ElementCollection
     @CollectionTable(name = "available_table_mapping")

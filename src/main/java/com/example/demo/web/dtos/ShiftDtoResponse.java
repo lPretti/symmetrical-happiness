@@ -15,14 +15,14 @@ import java.util.Timer;
 public class ShiftDtoResponse {
 
     private Long shiftId;
-    private Date date;
-    private int timeRef;
+  //  private Date date;
+  //  private int timeRef;
 
     public static ShiftDtoResponse toDto(ShiftModel model) {
         final ShiftDtoResponse dto = new ShiftDtoResponse(
-                model.getId(),
-                model.getDate(),
-                model.getInitialTime());
+                model.getId());
+  //              model.getDate(),
+  //              model.getInitialTime());
         return dto;
     }
 }

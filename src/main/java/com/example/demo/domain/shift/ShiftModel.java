@@ -7,6 +7,7 @@ import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Timer;
 
 @Builder
 @AllArgsConstructor
@@ -20,7 +21,7 @@ public class ShiftModel {
     
     private Long id;
     private Date date;
-    private Time initialTime;
+    private int initialTime;
     private Map<Integer, Integer> availableTables;
     private LocalDateTime created_At;
     private LocalDateTime updated_At;
