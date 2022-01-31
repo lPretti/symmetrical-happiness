@@ -12,21 +12,21 @@ import java.util.Optional;
 @AllArgsConstructor
 @Repository
 public class ShiftRepositoryImpl implements ShiftRepository {
-    private ShiftJpaRepository repository;
+    private ShiftJpaRepository jpaRepository;
 
     @Override
-    public Optional<ShiftModel> getShiftByDate(Date date) {
-        final Optional<ShiftEntity> shiftByDate = repository.getShiftByDate(date);
+    public Optional<ShiftModel> getByDate(Date date) {
+        final Optional<ShiftEntity> shiftByDate = jpaRepository.getShiftByDate(date);
         return  shiftByDate.isPresent() ? Optional.of(toModel(shiftByDate.get())) : Optional.empty();
     }
 
     @Override
     public ShiftModel update(ShiftModel model) {
-        return toModel(repository.save(toEntity(model)));
+        return toModel(jpaRepository.save(toEntity(model)));
     }
 
     @Override
-    public ShiftModel create(ShiftModel model) {
+    public  ShiftModel create(ShiftModel model) {
         final LocalDateTime dateTime = LocalDateTime.now();
 
         ShiftEntity entity = new ShiftEntity();
@@ -36,7 +36,7 @@ public class ShiftRepositoryImpl implements ShiftRepository {
         entity.setCreated_At(dateTime);
         entity.setUpdated_At(dateTime);
 
-        return toModel(repository.save(entity));
+        return toModel(jpaRepository.save(entity));
     }
 
 
