@@ -50,7 +50,6 @@ public class ShiftServiceImpl implements ShiftService {
         return result;
     }
 
-
     protected  ShiftModel removeTableReserved( ShiftModel model, int seatingNumber) {
         final Integer tables = model.getAvailableTables().get(getTableKeyValue(seatingNumber));
         model.getAvailableTables().replace(2, tables - 1);

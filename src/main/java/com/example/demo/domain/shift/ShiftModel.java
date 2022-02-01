@@ -1,5 +1,6 @@
 package com.example.demo.domain.shift;
 
+import com.example.demo.domain.TableKey;
 import lombok.*;
 
 import java.sql.Time;
@@ -14,11 +15,7 @@ import java.util.Timer;
 @Getter
 @Setter
 public class ShiftModel {
-    protected static final  Integer TABLE_FOR_2 = 2;
-    protected static final  Integer TABLE_FOR_4 = 4;
-    protected static final  Integer TABLE_FOR_6 = 6;
-    protected static final  Integer TABLE_FOR_8 = 8;
-    
+
     private Long id;
     private Date date;
     private int initialTime;
@@ -28,9 +25,8 @@ public class ShiftModel {
 
     public ShiftModel() {
         this.availableTables = new HashMap<Integer,Integer>();
-        availableTables.put(TABLE_FOR_2,0);
-        availableTables.put(TABLE_FOR_4,0);
-        availableTables.put(TABLE_FOR_6,0);
-        availableTables.put(TABLE_FOR_8,0);
+        availableTables.put(TableKey.DOS.ordinal(), 0);
+        availableTables.put(TableKey.CUATRO.ordinal(), 0);
+        availableTables.put(TableKey.SEIS.ordinal(), 0);
     }
 }
