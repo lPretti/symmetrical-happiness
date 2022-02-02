@@ -1,6 +1,7 @@
 package com.example.demo.domain.shift;
 
 import com.example.demo.domain.DomainException;
+import com.example.demo.domain.TableKey;
 import com.example.demo.domain.customer.CustomerModel;
 import com.example.demo.domain.reservation.ReservationServices;
 import lombok.AllArgsConstructor;
@@ -56,18 +57,15 @@ public class ShiftServiceImpl implements ShiftService {
         return model;
     }
 
-    // TODO : convertir las key en un enum y dentro de esa clase poner este método
     protected int getTableKeyValue(int customerQuantity) {
         int tableKey = 0;
 
         if(customerQuantity > 0 && customerQuantity <= 2) {
-            return 2;
+            return TableKey.DOS.getNumber();
         } else if (customerQuantity > 2 && customerQuantity <= 4) {
-            return 4;
+            return TableKey.CUATRO.getNumber();
         } else if (customerQuantity > 4 && customerQuantity <= 6) {
-            return 6;
-        } else if (customerQuantity > 6 ) {
-            return 8;
+            return TableKey.SEIS.getNumber();
         }
 
         return tableKey;
