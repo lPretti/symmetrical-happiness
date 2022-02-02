@@ -8,7 +8,7 @@ import java.sql.Time;
 import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.Map;
-import java.util.Timer;
+
 
 @DynamicUpdate
 @AllArgsConstructor
@@ -16,7 +16,7 @@ import java.util.Timer;
 @Getter
 @Setter
 @Entity
-@Table(name = "shift")
+@Table(name = "shifts")
 public class ShiftEntity {
     @Id
     @Column(name = "idShift")

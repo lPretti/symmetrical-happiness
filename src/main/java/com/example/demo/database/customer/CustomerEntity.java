@@ -13,9 +13,10 @@ import java.time.LocalDateTime;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Table(name = "customers")
 public class CustomerEntity {
     @Id
-    @Column(name = "idReservation")
+    @Column(name = "idCustomer")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
